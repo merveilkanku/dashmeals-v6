@@ -149,6 +149,7 @@ export const translations = {
 
 export const useTranslation = (lang: Language) => {
   return (key: keyof typeof translations['fr']) => {
-    return translations[lang][key] || translations['fr'][key] || key;
+    const translationSet = translations[lang] || translations['fr'];
+    return translationSet[key] || translations['fr'][key] || key;
   };
 };

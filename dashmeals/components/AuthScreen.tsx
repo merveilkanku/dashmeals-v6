@@ -506,22 +506,18 @@ export const AuthScreen: React.FC<Props> = ({ onLogin, isSupabaseReachable = tru
             {loading ? <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div> : (isLogin ? 'Se connecter' : "S'inscrire")}
           </button>
 
-          {(isDefaultProject || !isSupabaseReachable || error) && (
-            <div className="mt-4 p-4 bg-orange-50 border border-orange-200 rounded-xl">
-              <p className="text-xs text-orange-800 mb-2 font-medium text-center">
-                {!isSupabaseReachable 
-                  ? "Le serveur est injoignable. Utiliser le mode démo ?" 
-                  : "Pour tester sans compte, utilisez le mode démo."}
-              </p>
-              <button 
-                type="button"
-                onClick={() => handleDemoLogin(role as any)}
-                className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 rounded-lg text-sm shadow-sm transition-colors"
-              >
-                Continuer en Mode Démo
-              </button>
-            </div>
-          )}
+          <div className="mt-4 p-4 bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-xl">
+            <p className="text-xs text-orange-800 dark:text-orange-300 mb-2 font-medium text-center">
+              Pour tester sans compte ou en mode hors-ligne, utilisez le mode démo.
+            </p>
+            <button
+              type="button"
+              onClick={() => handleDemoLogin(role as any)}
+              className="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 rounded-lg text-sm shadow-sm transition-colors"
+            >
+              Continuer en Mode Démo
+            </button>
+          </div>
         </form>
 
         <div className="bg-gray-50 p-4 text-center border-t">
