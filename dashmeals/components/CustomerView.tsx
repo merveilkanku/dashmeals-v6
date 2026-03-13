@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { MapPin, ShoppingBag, List, Map, Zap, ArrowLeft, Plus, Bike, Footprints, LogOut, Navigation, Search, X, Receipt, Phone, Info, Image as ImageIcon, PlayCircle, Settings, Moon, Sun, Globe, CheckCircle, Type, Clock } from 'lucide-react';
+import { MapPin, ShoppingBag, List, Map, Zap, ArrowLeft, Plus, Bike, Footprints, LogOut, Navigation, Search, X, Receipt, Phone, Info, Image as ImageIcon, PlayCircle, Settings, Moon, Sun, Globe, CheckCircle, Type, Clock, Bell } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { KINSHASA_CENTER_LAT, KINSHASA_CENTER_LNG, CITIES_RDC, APP_LOGO_URL } from '../constants';
 import { Restaurant, UserState, ViewMode, MenuItem, CartItem, User, Order, Promotion, Theme, Language, AppFont, PaymentMethod, MobileMoneyNetwork } from '../types';

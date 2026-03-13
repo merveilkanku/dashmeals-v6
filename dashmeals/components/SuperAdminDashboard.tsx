@@ -19,7 +19,7 @@ interface Props {
   setFont?: (f: AppFont) => void;
 }
 
-type AdminView = 'overview' | 'users' | 'restaurants' | 'publications' | 'verifications';
+type AdminView = 'overview' | 'users' | 'restaurants' | 'publications' | 'verifications' | 'products';
 
 export const SuperAdminDashboard: React.FC<Props> = ({ user, onLogout, theme, setTheme, language, setLanguage, font, setFont }) => {
   const [activeView, setActiveView] = useState<AdminView>('overview');
