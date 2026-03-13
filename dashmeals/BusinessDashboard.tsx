@@ -287,13 +287,21 @@ export const BusinessDashboard: React.FC<Props> = ({ user, restaurant, onUpdateR
           description: restaurant.description,
           coverImage: restaurant.coverImage,
           city: restaurant.city,
+          latitude: restaurant.latitude || 0,
+          longitude: restaurant.longitude || 0,
           phoneNumber: restaurant.phoneNumber || '',
           currency: restaurant.currency || 'USD',
           paymentConfig: restaurant.paymentConfig || {
               acceptCash: true,
-              acceptMobileMoney: false
+              acceptMobileMoney: false,
+              mpesaNumber: '',
+              airtelNumber: '',
+              orangeNumber: ''
           }
       });
+      setPrepTime(restaurant.preparationTime.toString());
+      setDeliveryTime(restaurant.estimatedDeliveryTime.toString());
+      setRegistryNumber(restaurant.verificationDocs?.registryNumber || '');
   }, [restaurant]);
 
   // UPLOAD HELPER FUNCTION
@@ -1449,11 +1457,11 @@ export const BusinessDashboard: React.FC<Props> = ({ user, restaurant, onUpdateR
                   type="button"
                   onClick={() => setSettingsForm({
                     ...settingsForm, 
-                    paymentConfig: { ...settingsForm.paymentConfig, acceptCash: !settingsForm.paymentConfig.acceptCash }
+                    paymentConfig: { ...settingsForm.paymentConfig, acceptCash: !settingsForm.paymentConfig?.acceptCash }
                   })}
-                  className={`w-12 h-6 rounded-full p-1 transition-colors ${settingsForm.paymentConfig.acceptCash ? 'bg-green-500' : 'bg-gray-300 dark:bg-gray-600'}`}
+                  className={`w-12 h-6 rounded-full p-1 transition-colors ${settingsForm.paymentConfig?.acceptCash ? 'bg-green-500' : 'bg-gray-300 dark:bg-gray-600'}`}
                 >
-                  <div className={`w-4 h-4 rounded-full bg-white shadow-sm transform transition-transform ${settingsForm.paymentConfig.acceptCash ? 'translate-x-6' : 'translate-x-0'}`} />
+                  <div className={`w-4 h-4 rounded-full bg-white shadow-sm transform transition-transform ${settingsForm.paymentConfig?.acceptCash ? 'translate-x-6' : 'translate-x-0'}`} />
                 </button>
               </div>
 
@@ -1466,15 +1474,15 @@ export const BusinessDashboard: React.FC<Props> = ({ user, restaurant, onUpdateR
                   type="button"
                   onClick={() => setSettingsForm({
                     ...settingsForm, 
-                    paymentConfig: { ...settingsForm.paymentConfig, acceptMobileMoney: !settingsForm.paymentConfig.acceptMobileMoney }
+                    paymentConfig: { ...settingsForm.paymentConfig, acceptMobileMoney: !settingsForm.paymentConfig?.acceptMobileMoney }
                   })}
-                  className={`w-12 h-6 rounded-full p-1 transition-colors ${settingsForm.paymentConfig.acceptMobileMoney ? 'bg-brand-600' : 'bg-gray-300 dark:bg-gray-600'}`}
+                  className={`w-12 h-6 rounded-full p-1 transition-colors ${settingsForm.paymentConfig?.acceptMobileMoney ? 'bg-brand-600' : 'bg-gray-300 dark:bg-gray-600'}`}
                 >
-                  <div className={`w-4 h-4 rounded-full bg-white shadow-sm transform transition-transform ${settingsForm.paymentConfig.acceptMobileMoney ? 'translate-x-6' : 'translate-x-0'}`} />
+                  <div className={`w-4 h-4 rounded-full bg-white shadow-sm transform transition-transform ${settingsForm.paymentConfig?.acceptMobileMoney ? 'translate-x-6' : 'translate-x-0'}`} />
                 </button>
               </div>
 
-              {settingsForm.paymentConfig.acceptMobileMoney && (
+              {settingsForm.paymentConfig?.acceptMobileMoney && (
                 <div className="pl-4 space-y-4 animate-in slide-in-from-top-2 duration-200">
                   <div>
                     <label className="block text-xs font-bold text-gray-500 dark:text-gray-400 mb-1">Numéro M-Pesa</label>
@@ -1482,7 +1490,7 @@ export const BusinessDashboard: React.FC<Props> = ({ user, restaurant, onUpdateR
                       type="tel"
                       className="w-full p-3 border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg text-sm"
                       placeholder="Ex: 081..."
-                      value={settingsForm.paymentConfig.mpesaNumber || ''}
+                      value={settingsForm.paymentConfig?.mpesaNumber || ''}
                       onChange={e => setSettingsForm({
                         ...settingsForm,
                         paymentConfig: { ...settingsForm.paymentConfig, mpesaNumber: e.target.value }
@@ -1495,7 +1503,7 @@ export const BusinessDashboard: React.FC<Props> = ({ user, restaurant, onUpdateR
                       type="tel"
                       className="w-full p-3 border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg text-sm"
                       placeholder="Ex: 099..."
-                      value={settingsForm.paymentConfig.airtelNumber || ''}
+                      value={settingsForm.paymentConfig?.airtelNumber || ''}
                       onChange={e => setSettingsForm({
                         ...settingsForm,
                         paymentConfig: { ...settingsForm.paymentConfig, airtelNumber: e.target.value }
@@ -1508,7 +1516,7 @@ export const BusinessDashboard: React.FC<Props> = ({ user, restaurant, onUpdateR
                       type="tel"
                       className="w-full p-3 border border-gray-200 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg text-sm"
                       placeholder="Ex: 089..."
-                      value={settingsForm.paymentConfig.orangeNumber || ''}
+                      value={settingsForm.paymentConfig?.orangeNumber || ''}
                       onChange={e => setSettingsForm({
                         ...settingsForm,
                         paymentConfig: { ...settingsForm.paymentConfig, orangeNumber: e.target.value }
